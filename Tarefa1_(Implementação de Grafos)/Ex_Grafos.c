@@ -97,7 +97,7 @@ void gerar_matriz()
     printf("\n\n");
     listar_vertice();
 
-    printf("-----MATRIZ DE ADJASCENCIA-----\n\n");
+    printf("-----MATRIZ DE ADJACENCIA-----\n\n");
     //Laços para imprimir as Matrizes de forma Organizada
     printf("\t%d", 1);
     for (a->contador = 1; a->contador < a->coluna; a->contador += 1)
@@ -185,7 +185,7 @@ void menu_inicial()
             break;
         case 2:
             printf("\n\nO que deseja fazer agora: \n");
-            printf("1-Adicionar Pesos nas Arestas e immprimir a Matriz de Adjascencia\n");
+            printf("1-Adicionar Pesos nas Arestas e imprimir a Matriz de Adjacencia\n");
             printf("2-Finalizar o Programa\n");
             printf("Digite sua Escolha: ");
             scanf("%d", &a->escolha_menu);
