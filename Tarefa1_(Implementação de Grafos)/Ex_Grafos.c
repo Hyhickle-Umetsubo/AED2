@@ -1,6 +1,5 @@
 /*//------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 Hyhickle Ryozo Umetsubo Gonçalves - AED2 (Exercício Grafos)
-
 Condição 1 - Implementar um programa na linguagem de sua escolha, que permita a representação em memória de um grafo.
 Condição 2 - Este programa deve permitir a entrada dos vértices e os pesos das arestas.
 Condição 3 - Permitir o armazenamento de até 20 vértices
@@ -17,7 +16,7 @@ Condição 6 - Mostrar os dados armazenados
 void menu_inicial();
 void incluir_vertice();
 void listar_vertice();
-void listar_matriz();
+void gerar_matriz();
 
 //Buffers do Programa onde ficam todas as variaveis e os vertices
 void *buffer_variaveis;
@@ -42,8 +41,8 @@ typedef struct vertices
 } Vertices;
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//Função Listar Matriz
-void listar_matriz()
+//Função que Adiciona Arestas, Pesos e Imprime Matriz
+void gerar_matriz()
 {
     Variaveis *a;
     a = buffer_variaveis;
@@ -77,7 +76,7 @@ void listar_matriz()
             {
                 printf("Tem ligacao com: ");
                 scanf("%d", &a->aux);
-                if ((a->aux > a->numero_vertices)||(a->aux==0))
+                if ((a->aux > a->numero_vertices) || (a->aux == 0))
                 {
                     printf("\nINVALIDO - Ligacao com Vertice Inexistente\n");
                 }
@@ -88,7 +87,7 @@ void listar_matriz()
                         printf("\nEssa aresta ja existia, e sera alterada pelo novo peso\n");
                     }
                 }
-            } while ((a->aux > a->numero_vertices)||(a->aux==0));
+            } while ((a->aux > a->numero_vertices) || (a->aux == 0));
             printf("Qual o peso da Aresta: ");
             scanf("%d", &a->aux_peso);
             matriz[a->contador][a->aux - 1] = a->aux_peso;
@@ -99,7 +98,7 @@ void listar_matriz()
     listar_vertice();
 
     printf("-----MATRIZ DE ADJASCENCIA-----\n\n");
-    //Laços para Printar as Matrizes de forma Organizada
+    //Laços para imprimir as Matrizes de forma Organizada
     printf("\t%d", 1);
     for (a->contador = 1; a->contador < a->coluna; a->contador += 1)
     {
@@ -126,7 +125,7 @@ void listar_matriz()
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//Função de Incluir Vertices
+//Função que adiciona Vertices
 void incluir_vertice()
 {
     Variaveis *a;
@@ -139,10 +138,10 @@ void incluir_vertice()
         exit(1);
     }
     v = buffer_vertices + (sizeof(Vertices) * (a->numero_vertices));
-    printf("\nInsira um item: ");
+    printf("\nInsira o nome do Vertice: ");
     scanf("%s", v->vertice);
 
-    printf("\n---ITEM ADICIONADO---\n");
+    printf("-----VERTICE ADICIONADO COM SUCESSO-----\n");
     a->numero_vertices++;
     return;
 }
@@ -173,7 +172,7 @@ void menu_inicial()
     a = buffer_variaveis;
     for (;;)
     {
-        printf("\n\nDeseja inserir mais algum vertice: \n");
+        printf("\n\nDeseja inserir algum vertice: \n");
         printf("1-Sim\n");
         printf("2-Nao\n");
         printf("Digite sua Escolha: ");
@@ -185,15 +184,15 @@ void menu_inicial()
             incluir_vertice();
             break;
         case 2:
-            printf("\n\nDeseja listar a matriz ou finalizar o programa: \n");
-            printf("1-Listar\n");
-            printf("2-Sair\n");
+            printf("\n\nO que deseja fazer agora: \n");
+            printf("1-Adicionar Pesos nas Arestas e immprimir a Matriz de Adjascencia\n");
+            printf("2-Finalizar o Programa\n");
             printf("Digite sua Escolha: ");
             scanf("%d", &a->escolha_menu);
             if (a->escolha_menu == 1)
             {
                 listar_vertice();
-                listar_matriz();
+                gerar_matriz();
             }
             if (a->escolha_menu == 2)
             {
